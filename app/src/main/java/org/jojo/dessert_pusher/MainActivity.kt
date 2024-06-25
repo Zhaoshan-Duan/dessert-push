@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import org.jojo.dessert_pusher.databinding.ActivityMainBinding
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("MainActivity", "onCreate called")
+        Timber.i("onCreate called")
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
@@ -35,13 +36,12 @@ class MainActivity : AppCompatActivity() {
         binding.revenue = revenue
         binding.amountSold = dessertsSold
 
-    /
-        binding.dessertButton.setImageResource(currentDessert.imageId)
+    //    binding.dessertButton.setImageResource(currentDessert.imageId)
 
     }
 
     override fun onStart() {
         super.onStart()
-        Log.i("MainActivity", "onStart called")
+        Timber.i("onStart called")
     }
 }
