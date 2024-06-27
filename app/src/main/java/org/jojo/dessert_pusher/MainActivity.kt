@@ -56,10 +56,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.dessertButton.setImageResource(currentDessert.imageId)
         }
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
 
     private fun onDessertClicked() {
         revenue += currentDessert.price
@@ -95,6 +91,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        Timber.i("OnCreateOptionsMenu called")
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
