@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         binding.dessertButton.setOnClickListener {
             onDessertClicked()
         }
-            dessertTimer = DessertTimer()
+            dessertTimer = DessertTimer(this.lifecycle)
 
         binding.revenue = revenue
         binding.amountSold = dessertsSold
@@ -93,9 +93,7 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
     }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        Timber.i("OnCreateOptionsMenu called")
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -109,7 +107,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        dessertTimer.startTimer()
         Timber.i("onStart called")
     }
 
@@ -130,7 +127,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        dessertTimer.stopTimer()
         Timber.i("onStop called")
     }
 
