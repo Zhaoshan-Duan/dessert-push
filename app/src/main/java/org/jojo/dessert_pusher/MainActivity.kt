@@ -15,6 +15,12 @@ import androidx.databinding.DataBindingUtil
 import org.jojo.dessert_pusher.databinding.ActivityMainBinding
 import timber.log.Timber
 
+private const val KEY_REVENUE = "key_revenue"
+
+private const val KEY_DESSERTSOLD = "key_dessertsSold"
+
+private const val KEY_TIMER_SECONDS = "key_timer_seconds"
+
 class MainActivity : AppCompatActivity() {
 
     private var revenue = 0
@@ -52,6 +58,12 @@ class MainActivity : AppCompatActivity() {
             onDessertClicked()
         }
             dessertTimer = DessertTimer(this.lifecycle)
+
+            if (savedInstanceState != null) {
+               revenue = savedInstanceState.getInt(KEY_REVENUE, 0)
+                dessertsSold = savedInstanceState.getInt(KEY_DESSERTSOLD)
+                dessertTimer.secondsCount = savedInstanceState.getInt(KEY_TIMER_SECONDS, 0)
+            }
 
         binding.revenue = revenue
         binding.amountSold = dessertsSold
@@ -103,6 +115,13 @@ class MainActivity : AppCompatActivity() {
             R.id.shareMenuButton -> onShare()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_REVENUE, revenue)
+        outState.putInt(KEY_DESSERTSOLD, dessertsSold)
+        outState.putInt(KEY_TIMER_SECONDS, dessertTimer.secondsCount)
     }
 
     override fun onStart() {
